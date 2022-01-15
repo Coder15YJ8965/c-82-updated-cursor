@@ -1,0 +1,87 @@
+<html>
+<head>  
+<link rel="stylesheet" type="text/css" href="style.css">
+
+    <script type="text/javascript">
+</script>
+
+</head>
+<body class="body_backgorund">
+
+<div align="center">
+<h1>Paint</h1>
+
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+        <br><br >
+
+<!--Additional activity -->
+<span>Color - </span> 
+<input type="text" id="color"> 
+<span>Width Of the line - </span> 
+<input type="text" id="width_of_line">
+
+
+    </div>
+<script src="main.js"></script>
+</body>
+<body>
+
+	<div class="cursor"></div>
+	
+		<section class="main">
+		</section>
+	
+		<script type="text/javascript">
+		const cursor = document.querySelector(".cursor");
+		var timeout;
+	
+		//follow cursor on mousemove
+		document.addEventListener("mousemove", (e) => {
+		  let x = e.pageX;
+		  let y = e.pageY;
+	
+		  cursor.style.top = y + "px";
+		  cursor.style.left = x + "px";
+		  cursor.style.display = "block";
+	
+		  //cursor effects when mouse stopped
+		  function mouseStopped(){
+			cursor.style.display = "none";
+		  }
+		  clearTimeout(timeout);
+		  timeout = setTimeout(mouseStopped, 1000);
+		});
+	
+		//cursor effects when mouseout
+		document.addEventListener("mouseout", () => {
+		  cursor.style.display = "none";
+		});
+		</script>
+		<style>
+			.cursor{
+			z-index: 999;
+			position: fixed;
+			background: #2696E8;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			pointer-events: none;
+			box-shadow: 0 0 20px #2696E8,
+						0 0 60px #2696E8,
+						0 0 100px #2696E8;
+			animation: colors 5s infinite;
+			transform: translate(-50%, -50%);
+			display: none;
+		  }
+		  
+		  @keyframes colors{
+			0%{
+			  filter: hue-rotate(0deg);
+			}
+			100%{
+			  filter: hue-rotate(360deg);
+			}
+		  }
+		</style>
+		</body>
+</html>
